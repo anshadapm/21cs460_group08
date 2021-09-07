@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width", initial-scale=1>
+        <title>project</title>
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Helvetica Neue", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                background-color:rgb(235, 213, 173);
+            }
+            .header {
+                padding: 10px 16px;
+                background: rgb(82, 26, 4);
+                text-align: center;
+                color: #f1f1e4; 
+                border:0%
+            }
+            .content {
+                padding: 16px;
+                margin: 15%;
+            }
+            .image-container{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <h1>Detection of Planets from Gaps in Protoplanetary Disks</h1>
+        </div>
+        <div class=".content">
+            <h3>
+                Project as a part of CS460/660- Machine Learning(2021)
+            </h3>
+            <hr/>
+            By Anshada P M and Varun Manilal
+            <br>
+            Project Instructor: Dr.Liton Majumdar
+            <hr/>
+            <h3>
+                <u>PROJECT PROPOSAL</u>
+            </h3>
+            <ul>
+                <li><b>Motivation:</b>
+                An exoplanet or extrasolar planet is any planet beyond our solar system. There are many exoplanets and there are some methods of detection such as Radial velocity, microlensing and direct imaging.
+                But any of these methods can't detect exoplanets which are younger than 1000 years old. So here we are trying to create a model using mechine learning to infer the existance and masses from the gaps observed in protoplanatery disks (a rotating circumstellar disc of dense gas and dust surrounding a young newly formed star). 
+                </li>
+            </ul>
+        </div> 
+        <div class="image-container">   
+            <img src="HL_Tau_protoplanetary_disk.jpg">
+            <figcaption
+              style="text-align:center;font-size:13px;font-style: italic;">
+              Protoplanetary disk of HL Tauri
+             </figcaption>
+        </div>
+        <div class=".content">
+            <ul>
+            <li><b>Plan:</b>We plan to use an indirect method to probe and detect young planets in planet forming systems.
+            Near-infrared imaging with Atacama Large Millimeter Array (ALMA) has provided lots of images of protoplanetary disks showing rings and distinct gaps in star systems like HL Tau. So using this data as well as other simulations already performed, we can train our model to predict existence of exoplanets. The paper we referred to took only the case of ring-planet interaction whereas a planet might not exist actually in that ring. Also that model is limited only to low mass planets. We would like to improve the training data so as to account for larger planets also.
+            </li>
+            <li>
+                <b>Dataset and algorithm: </b> Dataset is provided by ALMA.
+                We try to make a deep neural network model using a multilayer
+                perceptron.
+            </li>
+            <li>
+                <b>References: </b>
+                <ul>
+                <li>
+                <cite>
+                    Auddy, L. and Lin, K. 2020. A Machine Learning Model to Infer Planet Masses from Gaps Observed in
+                    Protoplanetary Disks. The astrophysical journal. September 2020
+                    <a href="https://iopscience.iop.org/article/10.3847/1538-4357/aba95d/pdf">https://iopscience.iop.org/article/10.3847/1538-4357/aba95d/pdf</a>
+                </cite>
+                </li>
+                <li>
+                <cite>
+                    Auddy, S., Dey, R., Lin, M. and Hall, C. 2021. DPNNet-2.0 Part I: Finding hidden planets from simulated images of protoplanetary disk gaps.
+                    <a href="https://arxiv.org/pdf/2107.09086.pdf">https://arxiv.org/pdf/2107.09086.pdf</a>
+                </cite></li>
+                </ul>
+
+            </li>
+ 
+            </ul>
+
+        </div>
+        
+    </body>
+</html>
+
+
+
+
+
+
+
+
