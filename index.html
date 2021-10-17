@@ -102,9 +102,10 @@
 
             </h3> 
             The deep neural network implemented mainly using sequential model from 
-            tensorflow keras model and has an input layer of six feature variable such as gap width, aspect
-            ratio, viscosity, dust to gas ratio, stokes number and density profile. Then there is an 
-            output layer of single node followed by two hidden layers of nodes 256 and 128.  
+            tensorflow keras model and has an input layer of six variables such as gap width, aspect
+            ratio, viscosity, dust to gas ratio, stokes number and density profile. This is followed by 
+            two hidden layers of nodes numbering 256 and 128. And gives a single node output which is 
+            Planet Mass.
             
             The basic code is given as follows;
 
@@ -135,8 +136,10 @@
             width="421"
             height="256">
         </div>
-        We experimented on optimizer function to minimize error. When code ran using optimizer function adam we
-        got low training error compared to RMSprop as given below: 
+        We experimented on optimizer function to minimize error. Keras provides us with a range 
+        of optimizers out of which we applied the optimization algorithm adam which is based on
+         the SGD. Upon applying this lower training data was obtained but there was an increase
+          in the cross validation error as given below:
         <div class="image-container">
             <img src="adam.data.2k.jpg"
             width="798"
@@ -147,7 +150,7 @@
             width="421"
             height="256">
         </div>
-        When SGD is used training error could minimize little more.
+        When SGD is used as optimizer function;
         <div class="image-container">
             <img src="sgd.2k.data.png"
             width="798"
@@ -158,8 +161,20 @@
             width="421"
             height="256">
         </div> 
+        RMSprop is the most efficient optimiser function since it have least cross validation error. 
         <h3>
-            Sparse Modelling
+
+        </h3>
+        <div>
+             The primary part of the project involves the designing of a convalutional neural network(CNN) 
+            for image recognition from the data which has been obtained from ALMA. For that
+             we are currently trying to use the Network type RESNET50 whose structure we have
+              studied. Possible use of ALEXNET if we can obtain better results. For optimizer 
+              in keras we are using Adam which uses a stochastic gradient descent method. 
+              We might try Adadelta if time permits.
+        </div>
+        <h3>
+            Sparse modelling
         </h3>
         <div>
             We are using sparse modelling(SpM) for reconstructing images from data 
@@ -173,11 +188,35 @@
             width="588"
             height="602">
         </div>
-        <a href="https://docs.google.com/presentation/d/14aroxhCEoy7I1lZtK4XpB8b0n1InFHIao0etGg4Rhwg/edit?pli=1#slide=id.gea86aab84b_1_1">Powepoint presentation</a>
-        
+        <h3>
+            Contribution From Papers   
+        </h3>
+        We could find some useful papers from which we get the following contributions:
+        <ul>
+            <li>
+                Atacama Large Millimeter Array (ALMA) has enabled us to observe Protoplanetary 
+                Disks (PPDs) with good resolution. But this resolution has been observed not to
+                 be adequate enough. Hence before running a CNN we need to use a super-resolution
+                  imaging techniques to be able to observe the disks.
+            </li>
+            <li>
+                In one of the papers they utilised sparse modelling (SpM) to enhance the resolution 
+                of the image by 30% compared to the conventional algorithm used. Since developing 
+                a new super resolution algorithm is out of the scope we will try to obtain similar
+                 algorithm to increase resolution so that we can run the CNN.
+            </li>
+            <li>
+                Using SpM a resolution of 5 x 4 au was obtained using which they observed disk
+                 and ring structures of the a young triple system T Tau from the ALMA archival data.
+            </li>
+        </ul>
+        <a href="https://docs.google.com/presentation/d/14aroxhCEoy7I1lZtK4XpB8b0n1InFHIao0etGg4Rhwg/edit?pli=1#slide=id.gea86aab84b_1_1">
+            Powepoint presentation</a>
         <div>
-
-        <b>References: </b>
+            <h3>
+            
+            </h3>  
+            <b>References: </b>
                 <ul>
                 <li>
                 <cite>
