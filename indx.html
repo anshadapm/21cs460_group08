@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width", initial-scale=1>
+        <title>project</title>
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Helvetica Neue", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                background-color:rgb(237, 242, 243);
+            }
+            .header {
+                padding: 10px 16px;
+                background: rgb(43, 26, 105);
+                text-align: center;
+                color: #f1f1e4; 
+                border:0%
+            }
+            .content {
+                padding: 16px;
+                margin: 15%;
+            }
+            .image-container{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <h1>Detection of Planets from Gaps in Protoplanetary Disks</h1>
+        </div>
+        <div class=".content">
+            <h3>
+                Project as a part of CS460- Machine Learning(2021)
+            </h3>
+            <hr/>
+            By Anshada P M and Varun Manilal
+            <br>
+            Project Instructor: Dr.Liton Majumdar
+            <hr/>
+        </div>
+        <div>
+               <h3>INTRODUCTION</h3> 
+            Exoplanet, also called as extra solar planet, refers to planets outside the 
+            solar system. Exoplanets were first detected in 1992. The main methods used
+             to detect exoplanets are Transit method, Radial Velocity, Microlensing and
+              Direct imaging. But it has been difficult to detect planets around young 
+              stars with these methods. This is because planet signatures like spectra
+               are very faint because of very high stellar activity in the young stars 
+               as well as due to the presence of protostellar disks. Hence, we have very
+             less data about young stars. 
+             <br/>
+             So, this is where machine learning comes to use! The Atacama Large Millimeter
+              Array (ALMA) has taken large quantities of resolved images of protoplanetary 
+              disks (PPD) showing formation of gaps in the disks leading to formation of rings
+        </div>
+        <div class="image-container">   
+            <img src="disk.png">
+        </div>
+        <div>
+            The formation of these rings can be due to two causes. One because of 
+            disk-specific mechanisms which can be due to a variety of reasons like
+             condensation of molecular or gravitational instability etc. The second 
+             cause, which is the highlight is that the gaps are due to the interaction
+              of young planets with the disk around them.
+            <h3>WORKING WITH THE NUMERIC DATA</h3>We are detecting the primary planet in 
+            these disks. We assume that 90% of all protoplanetary disks have embedded planets.
+             This information is used to refine the FARGO 3D numeric data. The data contains
+              13 features other than the Planet mass regarding the disk. An example of the data is:
+        </div>
+        <div class="image-container">   
+            <img src="cde1.png">    
+        </div>
+        <div>
+            The relationship between different features can be visualized using scatter and 
+            histogram plots. We do not observe any specific patterns other than the fact 
+            that dust gap seems to be localized around some values.
+        </div>
+        <div class="image-container">   
+            <img src="relations.png">
+        </div>
+        <div>
+            <b>Using Isolation Forest to filter out anomalies in data</b>
+        </div>
+        <div>
+            To detect anomalies in the data which we assume are protoplanetary disks which do not contain planets we use isolation forest algorithm. We check for anomalies in 7 of the features and we take the contamination value to be 0.1. After filtering out the anomalies the remaining number of datasets is 704. The code used is as follows:
+        </div>
+        <div class="image-container">   
+            <img src="iso.for.png">
+        </div>
+        <div><b>Planet Mass Prediction using Gradient Boosting Regressor</b></div>
+        <div>
+            Good Results were achieved for Gradient Boosting Regressor when the number of boosting stages were taken as 100, maximum depth as 8, the minimum number of samples required to split a node was 50, and minimum number of samples at the leaf was taken to be 5. The base code is:
+        </div>
+        <div class="image-container">   
+            <img src="basecode.png">
+        </div>
+        <div>
+            An example of the results is summarized in the table showing the actual and the predicted mass for the cross-validation data.
+        </div>
+        <div class="image-container">   
+            <img src="cde2.png">
+        </div>
+        <div><b>Planet mass prediction using Multi-Layer Perceptron</b></div>
+        <div>
+            Planet mass prediction was tried using multilayer perceptron for various activation functions. Optimizers tried were RMSProp, Adam and SGD.  The architecture has two hidden layers with number of nodes 256 and 128. We used the activation function Relu and L2 regularization.
+        </div>
+        <div class="image-container">   
+            <img src="mlp.jpg">
+        </div>
+        <div>
+            In the case of RMSProp the training error was more than the cross-validation error. Hence the doubt of whether the data is overfit can be avoided. The model was run for 2000 epochs. The training results are:
+        </div>
+        <div class="image-container">   
+            <img src="rmsprop.jpg">
+        </div>
+        <div>
+            The other optimizer function which gave good results was SGD. This was run for 600 epochs. The results are:
+        </div>
+        <div class="image-container">   
+            <img src="sgd.png">
+        </div>
+        <div>The error for other models were compared with our model. We have obtained better results than the Lodato and Kanagawa model. This graph shows the variation of error for these models:</div>
+        <div class="image-container">   
+            <img src="unnamedm.png">
+        </div>
+        <div><b>Moving on to the Image data</b></div>
+        <div>
+            For image processing most of the data was collected from ALMA (primarily DSHARP) and a few other sources. Some of these images were in the form of raw data and had to undergo processing to obtain the final image. Processing of the data was done by NASA’s HEASARC: Software for the raw images. Since the image data was unlabelled, we undertook literature survey to collect data regarding the disks. We had a total of close to 120 images of protostellar disks out of which close to 60 of them were labelled with the planet mass.
+        </div>
+        <div class="image123">
+            <img src="pre.png" height="250" width="250" style="float:left">
+            <img class="middle-img" src="processed.jpg"/ height="250" width="250">
+            <figcaption
+              style="text-align:center;font-size:13px;font-style: italic;">
+              pre-processed image and image after processed
+             </figcaption>
+        </div>
+        <div>
+            The images obtained from ALMA are observed to be quite blurred due to which the disk substructures are not clearly visible. This can hamper the results. Hence to solve this problem we undertake super resolution techniques to increase the resolution and clarity of the images. For this initially we had planned to implement sparse modelling but later used other two algorithms called BSRGAN and SwinIR. BSRGAN is a degradation model used to synthesize Low Resolution images and SwinIR does image restoration using Swin Transformer. 
+        </div>
+        <div class="image-container">   
+            <img src="super res1.png">
+        </div>
+        <div>
+            This is the architecture of SwinIR.  SwinIR consists of three parts shallow feature extraction, deep feature extraction and high-quality image reconstruction. The deep feature extraction module is composed of several Swin Transformer blocks (RSTB) and each of this has 6 Swin Transformer layers along with a residual connection.
+        </div>
+        <div class="image-container">   
+            <img src="sup res2.png">
+        </div>
+        <div>
+            This is the schematic illustration of the BSRGAN degradation model. BSRGAN is a blind super-resolver which is trained with paired low resolution/high resolution images. In this the degradation sequence is randomly shuffled  where B<sub>iso</sub> , B<sub>aniso</sub> refers to isotropic and anisotropic Gaussian kernels. Ds is the downsampling operation and N represents different types of noise.
+            <br>These algorithms were applied for all images. These are the examples:
+        </div>
+        <div class="image123">
+            <img src="b1.png" height="150" width="150" style="float:left">
+            <img class="middle-img" src="b2.jpg"/ height="150" width="150">
+            <img src="b3.jpg"/ height="150" width="150">
+        </div>
+        <div class="image123">
+            <img src="c1.jpg" height="150" width="150" style="float:left">
+            <img class="middle-img" src="c2.png"/ height="150" width="150">
+            <img src="c3.png"/ height="150" width="150">
+        </div>
+        <div><b>CNN using ResNet-50</b></div>
+        <div>
+            ResNet50 is a variant of ResNet model which has 48 Convolution layers along with 1 MaxPool and 1 Average Pool layer. Using ResNet50 we can train very deep models and still obtain good accuracy. As number of layers increase deep neural networks accuracy saturates and then starts degrading rapidly. This is not due to overfitting as training error also increases. This is rectified by creating a deeper layer which has layers from the shallow model and then identity layers are added to it. This is the architecture of ResNet50 algorithm:
+        </div>
+        <div class="image-container">   
+            <img src="resnet.jpg"height="600" width="800">
+        </div>
+        <div>
+            Before running the CNN, all images were converted to a resolution of 128X128 in the RGB format. The initial results from training for 200 epochs using the optimizer function Adam was obtained as:
+        </div>
+        <div class="image-container">   
+            <img src="cnn.png">
+        </div>
+        <div><b>Prediction of Other Disk Parameters</b></div>
+        <div>
+            Another part of the project involved the prediction of other disk parameters from the image of the disk. For this we took up equations from Lodato et al. (2019) and Kanagawa et al. (2016). We have mainly focused on the prediction of viscosity of the disk, the dust gap width and the gas gap.
+            <br>The equation used in Lodato et al. is an empirical relation to infer planet masses from observed dust gap widths. The equation is:
+
+        </div>
+        <div class="image-container">   
+            <img src="eq1.png">
+        </div>
+        <div>
+            here w<sub>d</sub> is the dust gap width, M<sub>*</sub> is the parent stellar mass and M<sub>P</sub> is the planet mass.
+             <br>
+            The other equation is from Kanagawa et al. and is also called as the Kanagawa model. This is a more sophisticated equation and is given by:
+        </div>
+        <div class="image-container">   
+            <img src="eq2.png">
+        </div>
+        <div>
+            where w<sub>d</sub> is the gas width, h<sub>0</sub> is the disk’s local aspect ratio and ⍺ is the viscosity parameter.
+            <br>To predict the relationship between the planet mass and disk parameters we used polynomial regression. The idea is that when we obtain the planet mass from the CNN-ResNet50 we can find the dust gap, gas width and viscosity based on the predictions offered by these polynomial regressions. For this we use the pre-processed dataset which we had worked on before. The dataset is created using the numeric data used earlier. The general code for these polynomial regressions are:
+
+        </div>
+        <div class="image-container">   
+            <img src="dustcde.png">
+        </div>
+        <div>
+            For gas width the fit is for second order in mass and the fit is obtained as such:
+        </div>
+        <div class="image-container">   
+            <img src="dust graph.png">
+        </div>
+        <div>The planet mass is proportional to the cube of the dust gap. The plot gives a good fit.</div>
+        <div class="image-container">   
+            <img src="viscosity.png">
+        </div>
+        <div>
+            The viscosity is predicted against planet mass for degree 0.5 and the fit obtained is not too good.
+        </div>
+        <div class="image-container">   
+            <img src="last.png">
+        </div>
+        <div>
+            Now to present an example case we take the protostellar disk V883 Orionis. V883 Orionis is a protostar in the constellation of Orion. It is assumed to be a member of the Orion Nebula cluster at 414±7 pc. The true mass of primary planet in the disk is 0.897 M<ub>ꙩ</ub> . The predicted values are:
+<br>Planet Mass Prediction = 1.0698 Mꙩ
+<br>Gap Gap = 0.1408 
+<br>Dust Gap = 0.5715
+<br>Viscosity of disk = 0.00466 
+<br>
+The predictions for other disk parameters other than Planet mass cannot be confirmed yet as research is ongoing.
+
+        </div>
+        <div>
+            <h3>RESULTS AND INFERENCES</h3>
+            We are able to predict for Planet mass and properties. The error is due to our attempt to predict Earth sized planets as well as hot Jupiters leading to a very huge range of masses for comparatively a smaller number of dataset. 
+        </div>
+        <div><b>Proposed Implementations and Ideas</b></div>
+        <div>
+            We plan to run the CNN for Planet mass estimation after converting images to grayscale. This can help in faster implementation and we assume that patterns will be better recognised in greyscale (currently being implemented). 
+Another idea is to train labelled simulation data along with labelled image data to increase the number of training datasets to predict properties of the disk. (Probable implementation using image generation GAN)
+This model can be improved if mixed data (numerical/categorical and image data) is available for all protoplanetary disks or if it can be simulated. We believe an MLP-CNN algorithm can better predict other disk properties than what we have presented here.
+
+        </div>
+        <div><a href="https://docs.google.com/presentation/d/e/2PACX-1vSVIgOyEXHoklBSdJ41m9M9p_IXefQBRS7wEY-CHpzMOolfrPIX2IUbtB2N43lq1DH7MY5fTFDUUiAK/pub?start=false&loop=false&delayms=3000&slide=id.gdb4eabd10c_0_6">Final presentation slides</a></div>
+        <div><a href="https://www.niser.ac.in/~smishra/teach/cs460/2021/project/21cs460_group08/">Project Midway</a></div>
+        <div><br><b>References</b><br>
+        <ul>
+            <li><a href="https://iopscience.iop.org/article/10.3847/1538-4357/aba95d/pdf">https://iopscience.iop.org/article/10.3847/1538-4357/aba95d/pdf</a>-A Machine Learning Model to Infer Planet Masses from Gaps Observed in Protoplanetary Disks</li>
+        <li>
+            <a href="https://arxiv.org/pdf/2107.09086.pdf">https://arxiv.org/pdf/2107.09086.pdf
+
+            </a> - Finding hidden planets from simulated images of protoplanetary disk gaps
+        </li>
+        <li>
+            <a href="https://arxiv.org/abs/2110.00974">https://arxiv.org/abs/2110.00974
+                
+            </a> - ALMA Super-resolution Imaging of T Tau: r = 12 au Gap in the Compact Dust Disk around T Tau N.
+
+        </li>
+        <li>
+            <a href="https://academic.oup.com/pasj/article/68/3/43/2223288">https://academic.oup.com/pasj/article/68/3/43/2223288
+                
+            </a>- Mass constraint for a planet in a protoplanetary disk from the gap width
+
+        </li>
+        <li>
+            <a href="https://academic.oup.com/mnras/article-abstract/486/1/453/5423333?redirectedFrom=fulltext">https://academic.oup.com/mnras/article-abstract/486/1/453/5423333?redirectedFrom=fulltext
+                
+            </a> - The newborn planet population emerging from ring-like structures in discs
+
+        </li>
+        </ul></div>   
+    </body>
+</html>
