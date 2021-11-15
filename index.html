@@ -42,56 +42,213 @@
             Project Instructor: Dr.Liton Majumdar
             <hr/>
         </div>
-        <div>
-               <h3>INTRODUCTION</h3> 
-            Exoplanet, also called as extra solar planet, refers to planets outside the 
-            solar system. Exoplanets were first detected in 1992. The main methods used
-             to detect exoplanets are Transit method, Radial Velocity, Microlensing and
-              Direct imaging. But it has been difficult to detect planets around young 
-              stars with these methods. This is because planet signatures like spectra
-               are very faint because of very high stellar activity in the young stars 
-               as well as due to the presence of protostellar disks. Hence, we have very
-             less data about young stars. 
-             <br/>
-             So, this is where machine learning comes to use! The Atacama Large Millimeter
-              Array (ALMA) has taken large quantities of resolved images of protoplanetary 
-              disks (PPD) showing formation of gaps in the disks leading to formation of rings
-        </div>
+        <h3>
+            <u>PROJECT PROPOSAL</u>
+        </h3>
+        <ul>
+            <li><b>Motivation:</b>
+            An exoplanet or extrasolar planet is any planet beyond our solar system. There are many exoplanets and there are some methods of detection such as Radial velocity, microlensing and direct imaging.
+            But any of these methods can't detect exoplanets which are younger than 1000 years old. So here we are trying to create a model using mechine learning to infer the existance and masses from the gaps observed in protoplanatery disks (a rotating circumstellar disc of dense gas and dust surrounding a young newly formed star). 
+            </li>
+        </ul>
+    </div> 
+    <div class="image-container">   
+        <img src="HL_Tau_protoplanetary_disk.jpg">
+        <figcaption
+          style="text-align:center;font-size:13px;font-style: italic;">
+          Protoplanetary disk of HL Tauri
+         </figcaption>
+    </div>
+    <div class=".content">
+        <ul>
+        <li><b>Plan:</b>We plan to use an indirect method to probe and detect young planets in planet forming systems.
+        Near-infrared imaging with Atacama Large Millimeter Array (ALMA) has provided lots of images of protoplanetary disks showing rings and distinct gaps in star systems like HL Tau. So using this data as well as other simulations already performed, we can train our model to predict existence of exoplanets. The paper we referred to took only the case of ring-planet interaction whereas a planet might not exist actually in that ring. Also that model is limited only to low mass planets. We would like to improve the training data so as to account for larger planets also.
+        </li>
+        <li>
+            <b>Dataset and algorithm: </b> Dataset is provided by ALMA.
+            We try to make a deep neural network model using a multilayer
+            perceptron.
+        </li>
         <div class="image-container">   
-            <img src="disk.png">
+            <img src="image by alma.jpg"
+            width="373"
+            height="266">
+            <figcaption
+              style="text-align:center;font-size:13px;font-style: italic;">
+              Examples of image data by ALMA
+             </figcaption>
         </div>
+        <li>
+            <b>References: </b>
+            <ul>
+            <li>
+            <cite>
+                Auddy, L. and Lin, K. 2020. A Machine Learning Model to Infer Planet Masses from Gaps Observed in
+                Protoplanetary Disks. The astrophysical journal. September 2020
+                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/aba95d/pdf">https://iopscience.iop.org/article/10.3847/1538-4357/aba95d/pdf</a>
+            </cite>
+            </li>
+            <li>
+            <cite>
+                Auddy, S., Dey, R., Lin, M. and Hall, C. 2021. DPNNet-2.0 Part I: Finding hidden planets from simulated images of protoplanetary disk gaps.
+                <a href="https://arxiv.org/pdf/2107.09086.pdf">https://arxiv.org/pdf/2107.09086.pdf</a>
+            </cite></li>
+            </ul>
+
+        </li>
+
+        </ul>
+        <h3>
+            <u>PROJECT MIDWAY</u>
+
+        </h3> 
+        The deep neural network implemented mainly using sequential model from 
+        tensorflow keras model and has an input layer of six variables such as gap width, aspect
+        ratio, viscosity, dust to gas ratio, stokes number and density profile. This is followed by 
+        two hidden layers of nodes numbering 256 and 128. And gives a single node output which is 
+        Planet Mass.
+        
+        The base code is given as follows;
+
+
+    </div>
+    <div class="image-container">   
+        <img src="code_1.png"
+        width="879"
+        height="250">    
+    </div>
+    <div>
+        For this planet prediction model the activation function relu was applied and L2 
+        regularisation was used and RMSprop algorithm was used as optimiser function.
+    </div>
+    <div class="image-container">
+        <img src="rms.data.2k.jpg"
+        width="798"
+        height="143">
+    </div>
+    <div class="image-container">
+        <img src="rms.2k.jpg"
+        width="421"
+        height="256">
+    </div>
+    </div>
+    <div class="image-container">
+        <img src="rms.4k.jpg"
+        width="421"
+        height="256">
+    </div>
+    We experimented on optimizer function to minimize error. Keras provides us with a range 
+    of optimizers out of which we applied the optimization algorithm adam which is based on
+     the SGD. Upon applying this lower training data was obtained but there was an increase
+      in the cross validation error as given below:
+    <div class="image-container">
+        <img src="adam.data.2k.jpg"
+        width="798"
+        height="143">
+    </div>
+    <div class="image-container">
+        <img src="adam.2k.jpg"
+        width="421"
+        height="256">
+    </div>
+    When SGD is used as optimizer function;
+    <div class="image-container">
+        <img src="sgd.2k.data.png"
+        width="798"
+        height="143">
+    </div>
+    <div class="image-container">
+        <img src="sgd.2k.png"
+        width="421"
+        height="256">
+    </div> 
+    RMSprop is the most efficient optimiser function since it have least cross validation error. 
+    <h3>
+
+    </h3>
+    <div>
+         The primary part of the project involves the designing of a convalutional neural network(CNN) 
+        for image recognition from the data which has been obtained from ALMA. For that
+         we are currently trying to use the Network type RESNET50 whose structure we have
+          studied. Possible use of ALEXNET if we can obtain better results. For optimizer 
+          in keras we are using Adam which uses a stochastic gradient descent method. 
+          We might try Adadelta if time permits.
+    </div>
+    <h3>
+        Isolation Forest
+    </h3>
+    <div>
+        Isolation forest algorithm has been used to attempt to classify whether the
+         disks are host to planets or not. This has been implemented using sklearn library. 
+         Functions used include make_pipeline , StandardScaler, GradientBoostingRegressor 
+         and IsolationForest. Anomalies popped up as -1 and were compared for efficiency by 
+         looking at Dust Gap as the parameter.  Initial efficiencies are low and we plan to improve it by tweaking the parameters accordingly.
+    </div>
+    <h3>
+        Contribution From Papers   
+    </h3>
+    We could find some useful papers from which we get the following contributions:
+    <ul>
+        <li>
+            Atacama Large Millimeter Array (ALMA) has enabled us to observe Protoplanetary 
+            Disks (PPDs) with good resolution. But this resolution has been observed not to
+             be adequate enough. Hence before running a CNN we need to use a super-resolution
+              imaging techniques to be able to observe the disks.
+        </li>
+        <li>
+            In one of the papers they utilised sparse modelling (SpM) to enhance the resolution 
+            of the image by 30% compared to the conventional algorithm used. Since developing 
+            a new super resolution algorithm is out of the scope we will try to obtain similar
+             algorithm to increase resolution so that we can run the CNN.
+        </li>
+        <li>
+            Using SpM a resolution of 5 x 4 au was obtained using which they observed disk
+             and ring structures of the a young triple system T Tau from the ALMA archival data.
+        </li>
+    <li>
+        <b>Sparse modelling:</b>
+    
+        We are using sparse modelling(SpM) for reconstructing images from data 
+        sets taken by ALMA, using input parameters as field of view, image pixel size and 
+        regularization parameter set. Through this method we could reduce data size and increase
+        efficiency. We execute 10 fold cross validation with SpM and process imaging with 
+        minimum cross validation error. A flowchart of image processing with SpM is given below:
+    
+    <div class="image-container">
+        <img src="sparse modelling.jpg"
+        width="588"
+        height="602">
+    </div>
+</li></ul>
+    
+    <div>
+        <h3>
+        
+        </h3>  
+        <b>References: </b>
+            <ul>
+            <li>
+            <cite>
+                Yamaguchi, M., Tsukagoshi, T., Muto, T., Nomura, H., Nakazato, T.,
+Ikeda, S., Tamura, M. and Kawabe,R. 2021.ALMA Super-resolution Imaging of T Tau:
+                r = 12 au Gap in the Compact Dust Disk around T Tau N. 
+                <a href="https://arxiv.org/pdf/2110.00974.pdf">https://arxiv.org/pdf/2110.00974.pdf</a>
+            </cite>
+            </li>
+            <li>
+            <cite>
+                Yamaguchi, M., Akiyama, K., Tsukagoshi, T., Muto, T., Kataoka, A., 
+                Tazaki, F., Ikeda8, S., Fukagawa1, M., Honma, M., and Kawabe1, R. 2020. Super-resolution Imaging of the Protoplanetary Disk HD 142527 Using Sparse Modeling.
+                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ab899f/pdf">https://iopscience.iop.org/article/10.3847/1538-4357/ab899f/pdf</a>
+            </cite></li>
+            </ul>
+        </div>
+        
         <div>
-            The formation of these rings can be due to two causes. One because of 
-            disk-specific mechanisms which can be due to a variety of reasons like
-             condensation of molecular or gravitational instability etc. The second 
-             cause, which is the highlight is that the gaps are due to the interaction
-              of young planets with the disk around them.
-            <h3>WORKING WITH THE NUMERIC DATA</h3>We are detecting the primary planet in 
-            these disks. We assume that 90% of all protoplanetary disks have embedded planets.
-             This information is used to refine the FARGO 3D numeric data. The data contains
-              13 features other than the Planet mass regarding the disk. An example of the data is:
-        </div>
-        <div class="image-container">   
-            <img src="cde1.png">    
-        </div>
-        <div>
-            The relationship between different features can be visualized using scatter and 
-            histogram plots. We do not observe any specific patterns other than the fact 
-            that dust gap seems to be localized around some values.
-        </div>
-        <div class="image-container">   
-            <img src="relations.png">
-        </div>
-        <div>
-            <b>Using Isolation Forest to filter out anomalies in data</b>
-        </div>
-        <div>
-            To detect anomalies in the data which we assume are protoplanetary disks which do not contain planets we use isolation forest algorithm. We check for anomalies in 7 of the features and we take the contamination value to be 0.1. After filtering out the anomalies the remaining number of datasets is 704. The code used is as follows:
-        </div>
-        <div class="image-container">   
-            <img src="iso.for.png">
-        </div>
-        <div><b>Planet Mass Prediction using Gradient Boosting Regressor</b></div>
+            <h3>
+                <u>PROJECT FINAL </u>
+    
+            </h3> <b>Planet Mass Prediction using Gradient Boosting Regressor</b><br></div>
         <div>
             Good Results were achieved for Gradient Boosting Regressor when the number of boosting stages were taken as 100, maximum depth as 8, the minimum number of samples required to split a node was 50, and minimum number of samples at the leaf was taken to be 5. The base code is:
         </div>
@@ -140,7 +297,7 @@
             <img class="middle-img" src="processed.jpg"/ height="250" width="250">
             <figcaption
               style="text-align:center;font-size:13px;font-style: italic;">
-              pre-processed image and image after processed
+              Pre-processed image and image after processed
              </figcaption>
         </div>
         <div>
@@ -174,7 +331,7 @@
             ResNet50 is a variant of ResNet model which has 48 Convolution layers along with 1 MaxPool and 1 Average Pool layer. Using ResNet50 we can train very deep models and still obtain good accuracy. As number of layers increase deep neural networks accuracy saturates and then starts degrading rapidly. This is not due to overfitting as training error also increases. This is rectified by creating a deeper layer which has layers from the shallow model and then identity layers are added to it. This is the architecture of ResNet50 algorithm:
         </div>
         <div class="image-container">   
-            <img src="resnet.jpg"height="600" width="800">
+            <img src="resnet.jpg"height="400" width="600">
         </div>
         <div>
             Before running the CNN, all images were converted to a resolution of 128X128 in the RGB format. The initial results from training for 200 epochs using the optimizer function Adam was obtained as:
@@ -246,9 +403,8 @@ Another idea is to train labelled simulation data along with labelled image data
 This model can be improved if mixed data (numerical/categorical and image data) is available for all protoplanetary disks or if it can be simulated. We believe an MLP-CNN algorithm can better predict other disk properties than what we have presented here.
 
         </div>
-        <div><a href="https://docs.google.com/presentation/d/e/2PACX-1vSVIgOyEXHoklBSdJ41m9M9p_IXefQBRS7wEY-CHpzMOolfrPIX2IUbtB2N43lq1DH7MY5fTFDUUiAK/pub?start=false&loop=false&delayms=3000&slide=id.gdb4eabd10c_0_6">Final presentation slides</a></div>
-        <div><a href="https://www.niser.ac.in/~smishra/teach/cs460/2021/project/21cs460_group08/">Project Midway</a></div>
-        <div><br><b>References</b><br>
+        <div><br><a href="https://docs.google.com/presentation/d/e/2PACX-1vSVIgOyEXHoklBSdJ41m9M9p_IXefQBRS7wEY-CHpzMOolfrPIX2IUbtB2N43lq1DH7MY5fTFDUUiAK/pub?start=false&loop=false&delayms=3000&slide=id.gdb4eabd10c_0_6">Final presentation slides</a></div>
+         <div><br><b>References</b><br>
         <ul>
             <li><a href="https://iopscience.iop.org/article/10.3847/1538-4357/aba95d/pdf">https://iopscience.iop.org/article/10.3847/1538-4357/aba95d/pdf</a>-A Machine Learning Model to Infer Planet Masses from Gaps Observed in Protoplanetary Disks</li>
         <li>
